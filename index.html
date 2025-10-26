@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>探索紐西蘭 - 純淨之地</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        header {
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            background: white;
+            color: #667eea;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .shape {
+            position: absolute;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) { width: 80px; height: 80px; top: 20%; left: 10%; animation-delay: 0s; }
+        .shape:nth-child(2) { width: 120px; height: 120px; top: 60%; right: 15%; animation-delay: 2s; }
+        .shape:nth-child(3) { width: 60px; height: 60px; bottom: 20%; left: 20%; animation-delay: 4s; }
+
+        section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #667eea;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #764ba2;
+        }
+
+        .info-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .info-item {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .info-item strong {
+            color: #667eea;
+            font-size: 1.2rem;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            height: 250px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+
+        .gallery-item:hover::before {
+            background: rgba(0,0,0,0.1);
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-content p { font-size: 1.2rem; }
+            h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+        <div class="hero-content">
+            <h1>🇳🇿 探索紐西蘭</h1>
+            <p>世界上最純淨的自然天堂</p>
+            <button class="cta-button" onclick="scrollToSection()">開始探索</button>
+        </div>
+    </header>
+
+    <section id="features">
+        <h2>為什麼選擇紐西蘭？</h2>
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🏔️</div>
+                <h3>壯麗山脈</h3>
+                <p>南阿爾卑斯山脈綿延數百公里，擁有世界級的登山和滑雪體驗。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌊</div>
+                <h3>純淨海灘</h3>
+                <p>超過15,000公里的海岸線，提供無數美麗的海灘和海洋活動。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎬</div>
+                <h3>電影場景</h3>
+                <p>《魔戒》和《哈比人》三部曲的拍攝地，走進中土世界。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🦜</div>
+                <h3>獨特生態</h3>
+                <p>奇異鳥、海豚、企鵝等特有物種，生物多樣性豐富。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌟</div>
+                <h3>星空保護區</h3>
+                <p>世界上最清澈的星空之一，享受絕美的觀星體驗。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏛️</div>
+                <h3>毛利文化</h3>
+                <p>深入體驗紐西蘭原住民毛利人的獨特文化與傳統。</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section">
+        <h2>基本資訊</h2>
+        <div class="info-grid">
+            <div class="info-item">
+                <strong>首都</strong>
+                <p>威靈頓（Wellington）</p>
+            </div>
+            <div class="info-item">
+                <strong>最大城市</strong>
+                <p>奧克蘭（Auckland）</p>
+            </div>
+            <div class="info-item">
+                <strong>官方語言</strong>
+                <p>英語、毛利語、紐西蘭手語</p>
+            </div>
+            <div class="info-item">
+                <strong>人口</strong>
+                <p>約500萬人</p>
+            </div>
+            <div class="info-item">
+                <strong>貨幣</strong>
+                <p>紐西蘭元（NZD）</p>
+            </div>
+            <div class="info-item">
+                <strong>時區</strong>
+                <p>UTC+12（夏令時間+13）</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>熱門景點</h2>
+        <div class="gallery">
+            <div class="gallery-item" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                <span>米佛峽灣</span>
+            </div>
+            <div class="gallery-item" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                <span>皇后鎮</span>
+            </div>
+            <div class="gallery-item" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                <span>羅托魯瓦</span>
+            </div>
+            <div class="gallery-item" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);">
+                <span>庫克山</span>
+            </div>
+            <div class="gallery-item" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                <span>懷托摩螢火蟲洞</span>
+            </div>
+            <div class="gallery-item" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
+                <span>霍比屯</span>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 探索紐西蘭 | 純淨之地等你來發現</p>
+        <p style="margin-top: 10px; font-size: 0.9rem;">100% Pure New Zealand</p>
+    </footer>
+
+    <script>
+        function scrollToSection() {
+            document.getElementById('features').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 為特色卡片添加點擊動畫
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+        });
+
+        // 為畫廊項目添加點擊效果
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const name = this.querySelector('span').textContent;
+                alert(`✈️ ${name}是紐西蘭必訪景點之一！`);
+            });
+        });
+
+        // 滾動動畫效果
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.feature-card, .info-item, .gallery-item').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
